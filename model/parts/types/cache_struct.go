@@ -1,8 +1,8 @@
 package types
 
 import (
-	"go-incentive-simulation/config"
-	"go-incentive-simulation/model/general"
+	"StealthPancakeSimulator/config"
+	"StealthPancakeSimulator/model/general"
 	"sync"
 	"time"
 
