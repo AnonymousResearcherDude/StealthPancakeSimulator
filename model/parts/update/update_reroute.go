@@ -1,8 +1,8 @@
 package update
 
 import (
-	"go-incentive-simulation/config"
-	"go-incentive-simulation/model/parts/types"
+	"StealthPancakeSimulator/config"
+	"StealthPancakeSimulator/model/parts/types"
 )
 
 func Reroute(state *types.State, requestResult types.RequestResult, curEpoch int) int {
