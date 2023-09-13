@@ -2,8 +2,8 @@ package utils
 
 import (
 	"fmt"
-	"go-incentive-simulation/config"
-	"go-incentive-simulation/model/parts/types"
+	"StealthPancakeSimulator/config"
+	"StealthPancakeSimulator/model/parts/types"
 	"math"
 	"math/rand"
 	"testing"
