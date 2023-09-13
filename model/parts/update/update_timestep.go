@@ -1,7 +1,7 @@
 package update
 
 import (
-	"go-incentive-simulation/model/parts/types"
+	"StealthPancakeSimulator/model/parts/types"
 	"sync/atomic"
 )
 
