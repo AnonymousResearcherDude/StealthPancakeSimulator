@@ -3,8 +3,8 @@ package output
 import (
 	"bufio"
 	"fmt"
-	"go-incentive-simulation/config"
-	"go-incentive-simulation/model/parts/utils"
+	"StealthPancakeSimulator/config"
+	"StealthPancakeSimulator/model/parts/utils"
 	"os"
 )
 
