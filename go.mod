@@ -1,4 +1,4 @@
-module go-incentive-simulation
+module StealthPancakeSimulator
 
 go 1.19
 
