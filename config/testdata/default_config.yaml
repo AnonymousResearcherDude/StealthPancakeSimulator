@@ -1,0 +1,119 @@
+#### Global Configurations ####
+
+# Global configuration options, defaults in comment
+BaseOptions:
+  # Iterations: 10_000_000, best in multiples of 100_000
+  Iterations: 100_000
+  # Bits: 16, bits in maximum address
+  Bits: 16
+  # NetworkSize: 10000, number of nodes in network
+  NetworkSize: 10_000
+  # BinSize: 16, number of nodes in each bin/bucket for each node
+  BinSize: 16
+  # Originators: 1000, number of originators initiating requests
+  Originators: 1000
+  # RefreshRate: 8, the rate of which edge dept gets removed per second
+  RefreshRate: 8
+  # Threshold: 16, the maximum edge debt a node in an edge can have
+  Threshold: 16
+  # RandomSeed: 123456789, seed for deterministic randomness
+  RandomSeed: 123456789
+  # MaxProximityOrder: 16, determines how many accounting units is transferred according to distance from chunk.
+  MaxProximityOrder: 16
+  # Price: 1, the base unit for prices
+  Price: 1
+  # RequestsPerSecond: 12500, number of iterations during a second
+  RequestsPerSecond: 100_000
+  # EdgeLock: true, keeps edges locked while in use for concurrency
+  EdgeLock: true
+  # SameOriginator: false, makes the same originator request many times in a row
+  SameOriginator: false
+  # IterationMeansUniqueChunk: false, if a chunk chosen again by waiting/retry counts as an iteration
+  IterationMeansUniqueChunk: false
+  # RetryCausesTimeIncrease: false, if retry counts towards the x requests an originator makes per second
+  RetryCausesTimeIncrease: false
+  # DebugPrints: false, enables some useful prints to terminal during the run
+  DebugPrints: false
+  # DebugInterval: 1_000_000, how often these prints should be done
+  DebugInterval: 1_000_000
+  # NumGoroutines: -1, number of active goroutines, leave at -1 for automatically using numCPU
+  NumGoroutines: -1
+  # Enabled the outputWorker which handles writing output to file and analysis of results
+  OutputEnabled: false
+  # How many nodes are responsible to store a chunk, if possible
+  ReplicationFactor: 4
+  # The exponent used for the adjustable threshold formula
+  AdjustableThresholdExponent: 3
+  # IPFS workload
+  RealWorkload : false
+  # Which logic should be used in the outputWorker
+  OutputOptions:
+    MeanRewardPerForward: false
+    AverageNumberOfHops: false
+    HopFractionOfTotalRewards: false
+    NegaticeIncome: false
+    IncomeGini: false
+    IncomeTheil: false
+    HopIncome: false
+    DensenessIncome: false
+    WorkIncomeSpearman: false
+    WorkInfo: false
+    BucketInfo: false
+    LinkInfo: false
+    ExperimentId: "default"
+    # Reset output loggers after every output. With false, all outputs will be accumulated
+    Reset: false
+    # Compute and log output every X interations. With 0, output will be computed and logged after finisehd experiment
+    EvaluateInterval: 0
+
+# Experiments to choose from:
+  # omega: maxPoCheckEnabled
+  #
+  # empty or default: default, in code
+  # custom: custom, defined below
+
+Experiment:
+  Name: "default"
+
+# Defines your own custom experiment
+CustomExperiment:
+  # ThresholdEnabled: true, enabling the maximum limit of debt an edge can have in one direction
+  ThresholdEnabled: true
+  # ReciprocityEnabled: true, if enabled, dept in multiple directions is calculated against each other
+  ReciprocityEnabled: true
+  # ForgivenessEnabled: true, edge debt gets forgiven some amount on an interval (amortized)
+  ForgivenessEnabled: true
+  # PaymentEnabled: false, nodes pay if they would get a threshold failure
+  PaymentEnabled: false
+  # MaxPOCheckEnabled: false, causes the output worker.
+  MaxPOCheckEnabled: false
+  # OnlyOriginatorPays: false, only the originator will pay, others will threshold fail or wait
+  OnlyOriginatorPays: false
+  # PayOnlyForCurrentRequest: false, only pay for current request or the full debt on the edge
+  PayOnlyForCurrentRequest: false
+  # ForwardersPayForceOriginatorToPay: false, if threshold fails, forces all the nodes in the route to pay for the current request
+  ForwardersPayForceOriginatorToPay: false
+  # WaitingEnabled: false, when Threshold fails, will wait before trying to traverse same route
+  WaitingEnabled: false
+  # RetryWithAnotherPeer: false, the Route to the chunk will try to take many paths to find the chunk
+  RetryWithAnotherPeer: false
+  # PreferredChunks: false, fits well with cache, where some chunks are chosen more often than others
+  PreferredChunks: false
+  # AdjustableThreshold: false, the threshold limit of an edge is determined based on the XOR distance
+  AdjustableThreshold: false
+  # PayIfOrigPays: false, only pay if the originator pays -- NOT NEEDED
+  PayIfOrigPays: false
+  # CacheIsEnabled: false, cache on nodes which stores chunks the node have seen before
+  CacheIsEnabled: false
+  # cache size
+  CacheSize: 100_000 # this is for 40 megabytes
+  # different cache models
+  CacheModel:
+    # a base line can be the unlimited cache.
+    Unlimited: false
+    # if the content is far away then cache it (brings more reward)
+    NonProximity: false
+    # remove the least recently used chunk if cache is full (Least Recently Used)
+    LRU: false
+    # remove the least frequently used chunk if cache is full (Least Frequently Used)
+    LFU: false
